@@ -62,10 +62,7 @@ export function Header() {
 
           {/* Right side buttons */}
           <div className="flex items-center gap-2">
-            <Button 
-              className="bg-blue-500 hover:bg-blue-600 text-white"
-              onClick={() => window.open('https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0', '_blank')}
-            >
+            <Button className="bg-blue-500 hidden md:block hover:bg-blue-600 text-white">
               Get a Quote
             </Button>
 
@@ -96,10 +93,7 @@ export function Header() {
                   <Link href="/careers" className="text-lg hover:text-red-400" onClick={() => setIsOpen(false)}>
                     Join the Team
                   </Link>
-                  <Button 
-                    className="bg-blue-500 hover:bg-blue-600 text-white w-full mt-4"
-                    onClick={() => window.open('https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0', '_blank')}
-                  >
+                  <Button className="bg-blue-500 hover:bg-blue-600 text-white w-full mt-4">
                     Get a Quote
                   </Button>
                 </nav>
