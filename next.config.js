@@ -1,9 +1,7 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  distDir: 'out',
-  trailingSlash: true,  // Add this line
+  // Remove static export - this will fix the routing issues
   allowedDevOrigins: ["*.preview.same-app.com"],
   images: {
     unoptimized: true,
