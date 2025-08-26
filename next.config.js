@@ -1,7 +1,9 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
   distDir: 'out',
+  trailingSlash: true,  // Add this line
   allowedDevOrigins: ["*.preview.same-app.com"],
   images: {
     unoptimized: true,
