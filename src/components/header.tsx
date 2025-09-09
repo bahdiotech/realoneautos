@@ -95,7 +95,7 @@ export function Header() {
                     Join the Team
                   </Link>
                   <Button className="bg-blue-500 hover:bg-blue-600 text-white w-full mt-4">
-                    Get a Quote
+                  <a href="https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0"> Get a Quote</a>
                   </Button>
                 </nav>
               </SheetContent>
