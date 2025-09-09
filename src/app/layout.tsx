@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import ClientBody from "./ClientBody";
-import { Header } from "@/components/header";
+
 import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import ClientBody from "./ClientBody";
+
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +22,26 @@ export const metadata: Metadata = {
   title: "Realone Auto - Mobile Mechanics | Auto Repair At Your Door",
   description: "Realone Auto offers convenient mobile mechanic services. Our certified mechanics come to you for oil changes, brake repairs, diagnostics and more. Book online today!",
   keywords: "mobile mechanic, auto repair, car service, oil change, brake repair, mobile auto repair",
+  icons: {
+    icon: [
+      { url: '/logo.png', sizes: '96x96', type: 'image/png' },
+      { url: '/logo.png', sizes: '128x128', type: 'image/png' },
+      { url: '/logo.png', sizes: '256x256', type: 'image/png' },
+      { url: '/logo.svg', sizes: 'any', type: 'image/svg+xml' }
+    ],
+    apple: [
+      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/logo.png', sizes: '256x256', type: 'image/png' }
+    ],
+    shortcut: '/logo.png',
+    other: {
+      rel: 'icon',
+      url: '/logo.png',
+      sizes: '256x256'
+    }
+  },
+  manifest: '/site.webmanifest'
 };
 
 export default function RootLayout({

@@ -45,16 +45,16 @@ export function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Connect with Realone</h3>
             <div className="flex space-x-4 mb-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors" aria-label="Facebook">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors" aria-label="Instagram">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors" aria-label="Twitter">
                 <Twitter className="h-6 w-6" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors" aria-label="LinkedIn">
                 <Linkedin className="h-6 w-6" />
               </a>
             </div>
