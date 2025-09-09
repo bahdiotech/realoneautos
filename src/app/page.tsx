@@ -17,11 +17,7 @@ export default function HomePage() {
 
   // Array of hero images
   const heroImages = [
-    '/hero-bg.jpg',
-    '/ecu_rep.jpeg',
-    '/elec_rep.jpeg',
-    '/join.jpeg',
-    '/proser.jpeg',
+    
     '/new1.jpeg',
     '/new2.jpeg',
     '/new3.jpeg',
@@ -30,10 +26,11 @@ export default function HomePage() {
     '/new6.jpeg',
     '/new7.jpeg',
     '/new8.jpeg',
-    // '/new9.jpeg',
-    // '/new10.jpeg',
-    // '/new11.jpeg',
-    // '/new12.jpeg',
+    '/hero-bg.jpg',
+    '/ecu_rep.jpeg',
+    '/elec_rep.jpeg',
+    '/join.jpeg',
+    '/proser.jpeg',
   ]
 
   useEffect(() => {
@@ -531,7 +528,7 @@ export default function HomePage() {
             <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
               Get Your Free Quote
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button size="lg" variant="outline" className="border-white text-black hover:bg-white/10">
               Call 08092735348
             </Button>
           </div>
