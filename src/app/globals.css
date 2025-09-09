@@ -193,3 +193,124 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
+
+/* Slideshow specific animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.slide-enter {
+  animation: slideIn 1s ease-out forwards;
+}
+
+.slide-exit {
+  animation: slideOut 1s ease-out forwards;
+}
+
+/* Enhanced slideshow controls */
+.slideshow-nav {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.slideshow-nav:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.slideshow-indicator {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.slideshow-indicator:hover {
+  transform: scale(1.2);
+}
+
+.slideshow-indicator.active {
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Smooth transitions for slideshow */
+.slideshow-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Mobile optimizations for slideshow */
+@media (max-width: 768px) {
+  .slideshow-nav {
+    padding: 0.5rem;
+  }
+  
+  .slideshow-indicator {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+}
+
+/* Responsive background sizing for full screen coverage */
+@media (max-width: 640px) {
+  .slideshow-slide {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .slideshow-slide {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .slideshow-slide {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+}
+
+/* Ensure full screen coverage on all screens */
+.slideshow-slide {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Fallback for very wide screens */
+@media (min-width: 1920px) {
+  .slideshow-slide {
+    background-size: cover;
+    background-position: center;
+  }
+}

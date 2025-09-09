@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
-import { Star, MapPin, Shield, Clock, Users, CheckCircle, Play, Wrench, Car, Battery, Phone, ChevronRight, Calendar, Award, DollarSign } from "lucide-react"
+import { Star, MapPin, Shield, Clock, Users, CheckCircle, Play, Wrench, Car, Battery, Phone, ChevronRight, Calendar, Award, DollarSign, ChevronLeft, ChevronRight as ChevronRightIcon } from "lucide-react"
 import Link from "next/link"
 
 import { Badge } from "@/components/ui/badge"
@@ -12,6 +12,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 export default function HomePage() {
   const [zipCode, setZipCode] = useState("")
   const [scrollY, setScrollY] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  // Array of hero images
+  const heroImages = [
+    '/hero-bg.jpg',
+    '/ecu_rep.jpeg',
+    '/elec_rep.jpeg',
+    '/join.jpeg',
+    '/proser.jpeg',
+    '/new1.jpeg',
+    '/new2.jpeg',
+    '/new3.jpeg',
+    '/new4.jpeg',
+    '/new5.jpeg',
+    '/new6.jpeg',
+    '/new7.jpeg',
+    '/new8.jpeg',
+    // '/new9.jpeg',
+    // '/new10.jpeg',
+    // '/new11.jpeg',
+    // '/new12.jpeg',
+  ]
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -19,48 +42,105 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (isPaused) return
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+    }, 5000) // Change slide every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [heroImages.length, isPaused])
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+  }
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section
-        className="relative text-white min-h-[100vh] lg:min-h-[600px] flex items-center w-screen ml-[calc(-50vw+50%)] overflow-hidden"
-        style={{
-          backgroundImage: `url('/hero-bg.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed'
-        }}
+      {/* Hero Section with Slideshow */}
+      <section 
+        className="relative text-white min-h-[100vh] lg:min-h-[900px] flex items-center w-screen ml-[calc(-50vw+50%)] overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Animated overlay */}
+        {/* Slideshow Background */}
+        <div className="absolute inset-0 bg-gray-900">
+          {heroImages.map((image, index) => (
+            <div
+              key={index}
+              className={`slideshow-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ 
+                backgroundImage: `url('${image}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Light overlay for better text readability - much lighter */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60 transition-all duration-1000 ease-in-out"
-          style={{
-            transform: `translateY(${scrollY * 0.5}px)`
-          }}
+          className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-black/20 transition-all duration-1000 ease-in-out"
+          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
         />
 
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-red-500/20 animate-pulse"></div>
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 slideshow-nav text-white p-3 rounded-full"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 slideshow-nav text-white p-3 rounded-full"
+          aria-label="Next slide"
+        >
+          <ChevronRightIcon className="h-6 w-6" />
+        </button>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`slideshow-indicator w-3 h-3 rounded-full ${
+                index === currentSlide 
+                  ? 'bg-white active' 
+                  : 'bg-white/50 hover:bg-white/75'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
 
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-32">
           <div className="max-w-full lg:max-w-2xl">
             {/* Animated main heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-white drop-shadow-2xl leading-tight animate-fade-in-up">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-white leading-tight animate-fade-in-up" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
               <span className="block animate-slide-in-left">Peace of Mind</span>
               <span className="block animate-slide-in-right animation-delay-300">Delivered</span>
             </h1>
 
             {/* Animated subtitle */}
-            <h2 className="text-xl sm:text-2xl lg:text-3xl mb-6 sm:mb-8 text-white drop-shadow-lg animate-fade-in-up animation-delay-600">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl mb-6 sm:mb-8 text-white animate-fade-in-up animation-delay-600" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.6)' }}>
               Mobile Mechanics At Your Door
             </h2>
 
             {/* Quote Form */}
             <div className="mb-6 sm:mb-8 animate-fade-in-up animation-delay-900">
-              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-white drop-shadow-lg">Get A Free Quote</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-white" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6)' }}>Get A Free Quote</h3>
               <div className="  max-w-md">
                 {/* <input
                   type="text"
@@ -69,22 +149,25 @@ export default function HomePage() {
                   onChange={(e) => setZipCode(e.target.value)}
                   className="bg-white/95 backdrop-blur-sm text-gray-900 border-0 h-12 sm:h-12 px-4 rounded-lg shadow-lg focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:bg-white"
                 /> */}
-                <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 sm:px-8 h-12 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-semibold">
-                  <a href="https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0">Get Quote</a>
-                </button>
+                <a 
+                  href="https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0"
+                  className="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 sm:px-8 h-12 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-semibold"
+                >
+                  Get Quote
+                </a>
               </div>
             </div>
 
             {/* Trust Badges */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-center text-white animate-fade-in-up animation-delay-1200">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 transform transition-all duration-300 hover:bg-white/20 hover:scale-105">
-                <p className="text-sm sm:text-base font-semibold drop-shadow-lg">Auto repair on YOUR schedule</p>
+              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 transform transition-all duration-300 hover:bg-white/30 hover:scale-105 border border-white/20">
+                <p className="text-sm sm:text-base font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>Auto repair on YOUR schedule</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 transform transition-all duration-300 hover:bg-white/20 hover:scale-105">
-                <p className="text-sm sm:text-base font-semibold drop-shadow-lg">Full-Time Certified Mechanics</p>
+              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 transform transition-all duration-300 hover:bg-white/30 hover:scale-105 border border-white/20">
+                <p className="text-sm sm:text-base font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>Full-Time Certified Mechanics</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 transform transition-all duration-300 hover:bg-white/20 hover:scale-105">
-                <p className="text-sm sm:text-base font-semibold drop-shadow-lg">1 year / 12,000 mile warranty</p>
+              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 transform transition-all duration-300 hover:bg-white/30 hover:scale-105 border border-white/20">
+                <p className="text-sm sm:text-base font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>1 year / 12,000 mile warranty</p>
               </div>
             </div>
           </div>
