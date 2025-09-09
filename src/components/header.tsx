@@ -63,7 +63,8 @@ export function Header() {
           {/* Right side buttons */}
           <div className="flex items-center gap-2">
             <Button className="bg-blue-500 hidden md:block hover:bg-blue-600 text-white">
-              Get a Quote
+              <a href="https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0"> Get a Quote</a>
+             
             </Button>
 
             {/* Mobile menu */}

@@ -187,7 +187,9 @@ export default function EnterpriseWarrantyPage() {
                         <li>• Email support</li>
                         <li>• Basic reporting</li>
                       </ul>
-                      <Button variant="outline" className="w-full">Get Quote</Button>
+                      <Button variant="outline" className="w-full" asChild>
+                        <a href="https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0">Get Quote</a>
+                      </Button>
                     </div>
                     <div className="border-2 border-blue-600 rounded-lg p-6 text-center">
                       <Badge className="mb-2">Most Popular</Badge>
@@ -199,7 +201,9 @@ export default function EnterpriseWarrantyPage() {
                         <li>• Advanced reporting</li>
                         <li>• Account manager</li>
                       </ul>
-                      <Button className="w-full">Get Quote</Button>
+                      <Button className="w-full" asChild>
+                        <a href="https://api.whatsapp.com/send/?phone=2347010009558&text&type=phone_number&app_absent=0">Get Quote</a>
+                      </Button>
                     </div>
                     <div className="border rounded-lg p-6 text-center">
                       <h4 className="font-bold text-lg mb-2">Enterprise</h4>
